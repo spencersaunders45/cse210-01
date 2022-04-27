@@ -15,9 +15,9 @@ namespace cse210_01{
             List<int> oMoves = new List<int>();
             List<int> xMoves = new List<int>();
 
-            while (gameOver == false){
-                displayBoard(gameBoard);
+            displayBoard(gameBoard);
 
+            while (gameOver == false){
                 Console.Write("x\'s turn to choose a square(1-9): ");
                 int xMove = Convert.ToInt32(Console.ReadLine()) - 1;
                 gameBoard = addMove(gameBoard, xMove, 'x', ref gameOver, ref xMoves);
@@ -30,12 +30,15 @@ namespace cse210_01{
                 Console.Write("o\'s turn to choose a square(1-9): ");
                 int oMove = Convert.ToInt32(Console.ReadLine()) - 1;
                 gameBoard = addMove(gameBoard, oMove, 'o', ref gameOver, ref oMoves);
+
+                displayBoard(gameBoard);
             }
             
-            Console.WriteLine("Game over");
+            Console.WriteLine("Good game. Thanks for playing!\n");
         }
 
         static void displayBoard(char[] gameBoard){
+            Console.WriteLine();
             for (int i = 0; i < gameBoard.Length; i++){
                 if (i % 3 == 0 && i > 0){
                     Console.WriteLine("\n-+-+-");
@@ -53,7 +56,7 @@ namespace cse210_01{
         }
 
         static char[] addMove(char[] gameBoard, int move, char player, ref bool gameOver, ref List<int> moveList){
-            if (!gameBoard[move].Equals("x") || !gameBoard[move].Equals("o")){
+            if (!gameBoard[move].Equals('x') || !gameBoard[move].Equals('o')){
                 if (player.Equals('o')){
                     gameBoard[move] = 'o';
                     moveList.Add(move + 1);
