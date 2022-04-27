@@ -10,18 +10,30 @@ namespace cse210_01{
         static void Main(string[] args)
         {
             bool gameOver = false;
-            string gameBoard = "1|2|3\n-+-+-\n4|5|6\n-+-+-\n7|8|9";
+            string gameBoard = "123456789";
+            string winner = " ";
 
             while (gameOver == false){
-                
+                displayBoard(gameBoard);
+                // int x = Convert.ToInt32(Console.ReadLine());
+                gameOver = true;
             }
             
-            displayBoard(gameBoard);
         }
 
         static void displayBoard(string gameBoard){
-        for (int i = 0; i < gameBoard.Length; i++){
+            for (int i = 0; i < gameBoard.Length; i++){
+                if (i % 3 == 0 && i > 0){
+                    Console.WriteLine("\n-+-+-");
+                    Console.Write(gameBoard[i]);
+                    Console.Write("|");
+                    continue;
+                }
                 Console.Write(gameBoard[i]);
+                if ((i + 1) % 3 == 0){
+                    continue;
+                }
+                Console.Write("|");
             }
         }
     }
